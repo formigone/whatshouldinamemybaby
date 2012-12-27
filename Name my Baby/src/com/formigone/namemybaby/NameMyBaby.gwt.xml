@@ -4,6 +4,6 @@
 	<inherits name="com.google.gwt.user.User" />
 	<source path="client" />
 	<source path="models" />
-	<source path="controllers" />
+	<source path="factories" />
 	<entry-point class="com.formigone.namemybaby.client.Home" />
 </module>
