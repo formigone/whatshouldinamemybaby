@@ -6,7 +6,7 @@ import java.util.List;
 import com.formigone.namemybaby.models.Baby;
 import com.formigone.namemybaby.models.BabyGender;
 import com.formigone.namemybaby.models.Vote;
-import com.google.appengine.api.users.User;
+import com.formigone.namemybaby.models.User;
 
 public class VoterFactory {
 	public static List<User> createVoters() {

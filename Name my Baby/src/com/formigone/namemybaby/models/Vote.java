@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.formigone.namemybaby.factories.VoterFactory;
-import com.google.appengine.api.users.User;
 
 public class Vote implements Serializable {
+	private static final long serialVersionUID = -2594304631559386705L;
+
 	private Baby baby;
 	private int score;
 	private List<User> downVoters;
 	private List<User> upVoters;
+	
+	public Vote() {
+		this(null);
+	}
 	
 	public Vote(Baby baby) {
 		this.baby = baby;
