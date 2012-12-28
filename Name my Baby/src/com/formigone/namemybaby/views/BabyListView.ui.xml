@@ -3,11 +3,13 @@
     xmlns:g="urn:import:com.google.gwt.user.client.ui" >
 
     <ui:style>
+      .wide-cell {
+         padding: 10px;
+         background: #eef;
+         border: 2px solid #00c;
+      }
     </ui:style>
 
-    <g:HTMLPanel>
-        <g:VerticalPanel ui:field="vpBabyList">
-        </g:VerticalPanel>
-    </g:HTMLPanel>
+    <g:FlowPanel ui:field="vpBabyList" styleName="{style.wide-cell}" />
 
 </ui:UiBinder>
