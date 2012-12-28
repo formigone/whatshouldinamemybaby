@@ -6,7 +6,6 @@
     </ui:style>
 
     <g:HTMLPanel>
-
         <g:VerticalPanel ui:field="vpBabyList">
         </g:VerticalPanel>
     </g:HTMLPanel>

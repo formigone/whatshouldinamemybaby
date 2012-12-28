@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		
+	</ui:style>
+	<g:HTMLPanel>
+	    <g:FlowPanel>
+	        <g:PushButton ui:field="btnVoteUp">
+	            (+)
+           </g:PushButton>
+	        <g:PushButton ui:field="btnVoteDown">
+	            (-)
+           </g:PushButton>
+	    </g:FlowPanel>
+	    <g:FlowPanel>
+	        <g:Label ui:field="lblName" />
+	    </g:FlowPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
