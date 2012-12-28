@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.formigone.namemybaby.models.Baby;
 import com.formigone.namemybaby.models.Vote;
+import com.formigone.namemybaby.views.BabyListView;
+import com.formigone.namemybaby.views.MainVotingView;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -14,9 +16,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class Home implements EntryPoint {
 
 	private BabyServiceAsync babyService;
+	private MainVotingView mainView;
 	
 	@Override
 	public void onModuleLoad() {
+
+		mainView = new MainVotingView();
+		mainView.setHeader(new Label("[HEADER]"));
+		mainView.setBody(new Label("Loading..."));
+		
+		RootPanel.get().add(mainView.asWidget());
 
 		BabyServiceAsync babyService = GWT.create(BabyService.class);
 		
@@ -29,12 +38,9 @@ public class Home implements EntryPoint {
 
 			@Override
 			public void onSuccess(List<Vote> res) {
-				for (Vote vote: res) {
-					Baby baby = vote.getBaby();
-					Label label = new Label(baby.getName());
-					
-					RootPanel.get().add(label);
-				}
+				BabyListView babyList = new BabyListView();
+				babyList.setBabies(res);
+				mainView.setBody(babyList.asWidget());
 			}
 		};
 		
