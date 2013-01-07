@@ -5,6 +5,8 @@ import com.formigone.namemybaby.client.presenter.Presenter;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
@@ -34,12 +36,17 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 	private ClickHandler handleGenderSelect = new ClickHandler() {
 		@Override
 		public void onClick(ClickEvent event) {
-			if (event.getSource() == genderMale) {
-				genderMale.setEnabled(false);
-				genderFemale.setEnabled(true);
-			} else if (event.getSource() == genderFemale) {
-				genderFemale.setEnabled(false);
-				genderMale.setEnabled(true);
+			if (isInputEnabled()) {
+				if (event.getSource() == genderMale) {
+					genderMale.setEnabled(false);
+					genderFemale.setEnabled(true);
+				} else if (event.getSource() == genderFemale) {
+					genderFemale.setEnabled(false);
+					genderMale.setEnabled(true);
+				}
+				
+				setInputFocus();
+				selectInput();
 			}
 		}
 	};
@@ -47,6 +54,14 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 	public void bind() {
 		genderMale.addClickHandler(handleGenderSelect);
 		genderFemale.addClickHandler(handleGenderSelect);
+
+		input.addKeyPressHandler(new KeyPressHandler() {
+
+			@Override
+			public void onKeyPress(KeyPressEvent event) {
+				presenter.doOnKeyPressed(event);
+			}
+		});
 	}
 
 	@Override
@@ -56,24 +71,41 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 
 	@Override
 	public boolean isMaleSelected() {
-		// TODO Auto-generated method stub
-		return false;
+		return !genderMale.isEnabled();
 	}
 
 	@Override
 	public void setInputFocus() {
-		// TODO Auto-generated method stub
-		
+		input.setFocus(true);
 	}
 
 	@Override
 	public String getInput() {
-		// TODO Auto-generated method stub
-		return null;
+		return input.getText();
 	}
 	
 	@Override
 	public Widget asWidget() {
 		return this;
+	}
+
+	@Override
+	public void selectInput() {
+		input.selectAll();
+	}
+
+	@Override
+	public void setInput(String text) {
+		this.input.setText(text);
+	}
+
+	@Override
+	public void setInputEnabled(boolean isEnabled) {
+		input.setEnabled(isEnabled);
+	}
+
+	@Override
+	public boolean isInputEnabled() {
+		return input.isEnabled();
 	}
 }

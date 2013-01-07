@@ -1,6 +1,8 @@
 package com.formigone.namemybaby.client.presenter;
 
 import com.formigone.namemybaby.client.NameMyBabyServiceAsync;
+import com.formigone.namemybaby.shared.model.Baby;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -10,6 +12,10 @@ public class NameMyBabyPresenter implements Presenter {
 		void setPresenter(Presenter presenter);
 		boolean isMaleSelected();
 		void setInputFocus();
+		void selectInput();
+		void setInput(String text);
+		void setInputEnabled(boolean isEnabled);
+		boolean isInputEnabled();
 		String getInput();
 		Widget asWidget();
 	}
@@ -27,5 +33,26 @@ public class NameMyBabyPresenter implements Presenter {
 		display.setPresenter(this);
 		container.clear();
 		container.add(display.asWidget());
+		display.setInputFocus();
+		display.selectInput();
+	}
+
+	@Override
+	public void doOnKeyPressed(KeyPressEvent event) {
+		if (display.isInputEnabled()) {
+			int key = (int) event.getCharCode();
+			if (key == 13 /* Enter */) {
+				String name = display.getInput();
+				boolean gender = display.isMaleSelected();
+				Baby baby = new Baby(name, gender);
+	
+				display.setInputEnabled(false);
+				display.setInput("Loading...");
+				
+				System.out.println("Creating new baby");
+				System.out.println("  Name  : " + name);
+				System.out.println("  Gender: " + (gender ? "Male" : "Female"));
+			}
+		}
 	}
 }
