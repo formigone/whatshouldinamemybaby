@@ -39,6 +39,7 @@ public class NameMyBabyPresenter implements Presenter {
 
 	@Override
 	public void doOnKeyPressed(KeyPressEvent event) {
+		// TODO: Filter empty names
 		if (display.isInputEnabled()) {
 			int key = (int) event.getCharCode();
 			if (key == 13 /* Enter */) {

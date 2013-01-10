@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui" >
+
+    <ui:with field="R" type="com.formigone.namemybaby.client.view.res.R"></ui:with>
+    <ui:style>
+	@external .card;
+	.card {
+		width: 531px;
+		height: 93px;
+		background: #c00;
+	}
+    </ui:style>
+
+    <g:FlowPanel styleName="{style.card}">
+        <g:Label>Rodrigo</g:Label>
+        <g:Image resource="{R.nameCardBoy}"/>
+    </g:FlowPanel>
+</ui:UiBinder>
