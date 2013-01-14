@@ -12,7 +12,21 @@ public class NameMyBaby implements EntryPoint {
 		AppController appController = new AppController(rpcService);
 		appController.go(RootPanel.get());*/
 		
-		NameCard name = new NameCard();
-		RootPanel.get().add(name);
+		NameCard[] names = new NameCard[] {
+			new NameCard(),
+			new NameCard(false),
+			new NameCard(false),
+			new NameCard()
+		};
+		
+		names[0].setName("Giggo");
+		names[1].setName("Lushimimi");
+		names[2].setName("Natasha");
+		names[3].setName("Lionel");
+
+		RootPanel.get().add(names[0]);
+		RootPanel.get().add(names[1]);
+		RootPanel.get().add(names[2]);
+		RootPanel.get().add(names[3]);
 	}
 }

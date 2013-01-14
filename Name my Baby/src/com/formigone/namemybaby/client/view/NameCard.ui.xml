@@ -1,19 +1,13 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-    xmlns:g="urn:import:com.google.gwt.user.client.ui" >
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
-    <ui:with field="R" type="com.formigone.namemybaby.client.view.res.R"></ui:with>
-    <ui:style>
-	@external .card;
-	.card {
-		width: 531px;
-		height: 93px;
-		background: #c00;
-	}
-    </ui:style>
+	<ui:with field="R" type="com.formigone.namemybaby.client.view.res.R"></ui:with>
 
-    <g:FlowPanel styleName="{style.card}">
-        <g:Label>Rodrigo</g:Label>
-        <g:Image resource="{R.nameCardBoy}"/>
-    </g:FlowPanel>
+	<g:FlowPanel styleName="{R.css.nameCard}" ui:field="card">
+    <g:Button styleName="{R.css.vote} {R.css.voteUp}" ui:field="upVote"/>
+    <g:Button styleName="{R.css.vote} {R.css.voteDown}" ui:field="downVote"/>
+		<g:Label styleName="{R.css.name}" ui:field="name"></g:Label>
+		<g:Label styleName="{R.css.percent}" ui:field="percent"></g:Label>
+	</g:FlowPanel>
 </ui:UiBinder>

@@ -3,7 +3,6 @@ package com.formigone.namemybaby.client;
 import com.formigone.namemybaby.client.presenter.NameMyBabyPresenter;
 import com.formigone.namemybaby.client.presenter.Presenter;
 import com.formigone.namemybaby.client.view.NameMyBabyView;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.user.client.ui.HasWidgets;
 

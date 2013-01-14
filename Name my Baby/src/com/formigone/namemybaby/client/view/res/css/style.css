@@ -1,0 +1,70 @@
+@def colorPositive #0c0;
+@def colorNegative #c00;
+
+.nameCard {
+	width: 490px !important;
+	height: 61px !important;
+	margin: 10px auto;
+	padding: 32px 20px 0;
+}
+
+@sprite .nameCardBoy {
+	gwt-image: "nameCardBoy";
+}
+
+@sprite .nameCardGirl {
+	gwt-image: "nameCardGirl";
+}
+
+.vote {
+  display: block;
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 0 5px;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+}
+
+.vote:active {
+	margin-top: 1px;
+}
+
+@sprite .voteUp {
+  gwt-image: "voteUp";
+}
+
+@sprite .voteDown {
+  gwt-image: "voteDown";
+}
+
+@sprite .voteUp:hover {
+  gwt-image: "voteUpHover";
+}
+
+@sprite .voteDown:hover {
+  gwt-image: "voteDownHover";
+}
+
+.name {
+	margin-left: 10px;
+	line-height: 32px;
+	font-size: 32px;
+	float: left;
+}
+
+.percent {
+	line-height: 32px;
+  font-size: 23px;
+  font-weight: 800;
+	float: right;
+}
+
+.percentPositive {
+	color: colorPositive;
+}
+
+.percentNegative {
+	color: colorNegative;
+}

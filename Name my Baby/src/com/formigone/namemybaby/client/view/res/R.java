@@ -1,55 +1,69 @@
 package com.formigone.namemybaby.client.view.res;
 
-import com.google.gwt.core.shared.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
 
 public interface R extends ClientBundle {
-	
-	public static final R GET = GWT.create(R.class);
 
-	@Source("gender-boy-down.png")
+	interface Style extends CssResource {
+		String nameCard();
+		String nameCardBoy();
+		String nameCardGirl();
+		String vote();
+		String voteUp();
+		String voteDown();
+		String name();
+		String percent();
+		String percentPositive();
+		String percentNegative();
+	}
+
+	@Source("css/style.css")
+	Style css();
+
+	@Source("img/gender-boy-down.png")
 	ImageResource genderBoyDown();
 
-	@Source("gender-boy.png")
+	@Source("img/gender-boy.png")
 	ImageResource genderBoy();
 
-	@Source("gender-girl-down.png")
+	@Source("img/gender-girl-down.png")
 	ImageResource genderGirlDown();
 
-	@Source("gender-girl.png")
+	@Source("img/gender-girl.png")
 	ImageResource genderGirl();
 
-	@Source("name-card-boy.png")
+	@Source("img/name-card-boy.png")
 	ImageResource nameCardBoy();
 
-	@Source("name-card-girl.png")
+	@Source("img/name-card-girl.png")
 	ImageResource nameCardGirl();
 
+	@Source("img/searchbox.png")
 	ImageResource searchbox();
 
-	@Source("vote-down-boy.png")
+	@Source("img/vote-down-boy.png")
 	ImageResource voteDownBoy();
 
-	@Source("vote-down-girl.png")
+	@Source("img/vote-down-girl.png")
 	ImageResource voteDownGirl();
 
-	@Source("vote-down-hover.png")
+	@Source("img/vote-down-hover.png")
 	ImageResource voteDownHover();
 
-	@Source("vote-down.png")
+	@Source("img/vote-down.png")
 	ImageResource voteDown();
 
-	@Source("vote-up-boy.png")
+	@Source("img/vote-up-boy.png")
 	ImageResource voteUpBoy();
 
-	@Source("vote-up-girl.png")
+	@Source("img/vote-up-girl.png")
 	ImageResource voteUpGirl();
 
-	@Source("vote-up-hover.png")
+	@Source("img/vote-up-hover.png")
 	ImageResource voteUpHover();
 
-	@Source("vote-up.png")
+	@Source("img/vote-up.png")
 	ImageResource voteUp();
 }
