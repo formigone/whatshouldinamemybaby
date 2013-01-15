@@ -7,7 +7,7 @@
 	<g:FlowPanel styleName="{R.css.nameCard}" ui:field="card">
     <g:Button styleName="{R.css.vote} {R.css.voteUp}" ui:field="upVote"/>
     <g:Button styleName="{R.css.vote} {R.css.voteDown}" ui:field="downVote"/>
-		<g:Label styleName="{R.css.name}" ui:field="name"></g:Label>
-		<g:Label styleName="{R.css.percent}" ui:field="percent"></g:Label>
+		<g:Label styleName="{R.css.name}" ui:field="name" />
+		<g:Label styleName="{R.css.percent}" ui:field="percent" />
 	</g:FlowPanel>
 </ui:UiBinder>

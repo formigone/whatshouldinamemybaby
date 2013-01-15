@@ -1,16 +1,12 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
-		.wrapper {
-			border: 1px solid #aaa;
-			background: #ddd;
-			padding: 10px;
-		}
-	</ui:style>
-	<g:FlowPanel styleName="{style.wrapper}">
-		<g:TextBox ui:field="input" />
-		<g:PushButton ui:field="genderMale">Male</g:PushButton>
-		<g:PushButton ui:field="genderFemale">Female</g:PushButton>
+
+	<ui:with field="R" type="com.formigone.namemybaby.client.view.res.R"></ui:with>
+
+	<g:FlowPanel styleName="{R.css.inputContainer}">
+		<g:Button ui:field="genderMale" styleName="{R.css.genderSelect} {R.css.genderSelectBoy}" />
+		<g:Button ui:field="genderFemale" styleName="{R.css.genderSelect} {R.css.genderSelectGirl}" />
+		<g:TextBox ui:field="input" styleName="{R.css.inputBox}" />
 	</g:FlowPanel>
 </ui:UiBinder> 

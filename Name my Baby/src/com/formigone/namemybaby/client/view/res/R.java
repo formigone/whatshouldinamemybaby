@@ -17,6 +17,13 @@ public interface R extends ClientBundle {
 		String percent();
 		String percentPositive();
 		String percentNegative();
+		String inputContainer();
+		String inputBox();
+		String genderSelect();
+		String genderSelectBoy();
+		String genderSelectGirl();
+		String genderSelectBoyDown();
+		String genderSelectGirlDown();
 	}
 
 	@Source("css/style.css")
