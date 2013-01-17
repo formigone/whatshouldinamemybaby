@@ -1,5 +1,52 @@
 @def colorPositive #0c0;
 @def colorNegative #c00;
+
+@sprite .body {
+	gwt-image: "background";
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #ddd;
+	overflow: auto !important;
+}
+
+@sprite .header {
+	gwt-image: "pregnantWoman";
+	background-position-y: 130px;
+	margin: 10px auto -415px;
+	text-align: center;
+	height: 600px;
+}
+
+.header h1 {
+	font-family: "Leckerly One";
+	color: #dad;
+	font-size: 3.25em;
+	text-shadow: 0 1px 1px #333, 0 -1px 1px #fff;
+	font-weight: 400;
+	margin: 0;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	cursor: default;
+}
+
+.header h1:hover {
+	color: #c00;
+}
+
+.header p {
+	margin: 10px;
+	color: #333;
+	font-size: 1.4em;
+}
+
+.namesContainer {
+	margin: 250px auto 10px;
+}
+
 .nameCard {
 	width: 490px !important;
 	height: 61px !important;
@@ -48,8 +95,8 @@
 
 .name {
 	margin-left: 10px;
-	line-height: 32px;
-	font-size: 32px;
+	line-height: 25px;
+	font-size: 42px;
 	float: left;
 }
 
@@ -113,5 +160,6 @@
 	padding: 0 10px;
 	line-height: 67px;
 	font-size: 42px;
+	font-family: "Open Sans";
 	margin: 0 0 0 5px;
 }

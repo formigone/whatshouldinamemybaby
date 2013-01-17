@@ -3,6 +3,8 @@ package com.formigone.namemybaby.client.view.res;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.resources.client.ImageResource.ImageOptions;
+import com.google.gwt.resources.client.ImageResource.RepeatStyle;
 
 public interface R extends ClientBundle {
 
@@ -17,6 +19,7 @@ public interface R extends ClientBundle {
 		String percent();
 		String percentPositive();
 		String percentNegative();
+		String namesContainer();
 		String inputContainer();
 		String inputBox();
 		String genderSelect();
@@ -24,6 +27,8 @@ public interface R extends ClientBundle {
 		String genderSelectGirl();
 		String genderSelectBoyDown();
 		String genderSelectGirlDown();
+		String body();
+		String header();
 	}
 
 	@Source("css/style.css")
@@ -73,4 +78,15 @@ public interface R extends ClientBundle {
 
 	@Source("img/vote-up.png")
 	ImageResource voteUp();
+	
+	@Source("img/background.png")
+	@ImageOptions(repeatStyle=RepeatStyle.Horizontal)
+	ImageResource background();
+	
+	@Source("img/dotted-pattern.png")
+	@ImageOptions(repeatStyle=RepeatStyle.Both)
+	ImageResource dottedPattern();
+	
+	@Source("img/pregnant-woman.png")
+	ImageResource pregnantWoman();
 }

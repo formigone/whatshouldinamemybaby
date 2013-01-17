@@ -4,9 +4,18 @@
 
 	<ui:with field="R" type="com.formigone.namemybaby.client.view.res.R"></ui:with>
 
-	<g:FlowPanel styleName="{R.css.inputContainer}">
-		<g:Button ui:field="genderMale" styleName="{R.css.genderSelect} {R.css.genderSelectBoy}" />
-		<g:Button ui:field="genderFemale" styleName="{R.css.genderSelect} {R.css.genderSelectGirl}" />
-		<g:TextBox ui:field="input" styleName="{R.css.inputBox}" />
-	</g:FlowPanel>
+	<g:HTMLPanel styleName="{R.css.body}">
+	    <div class="{R.css.header}">
+	        <h1>Name my Baby</h1>
+	        <p>Born in <span ui:field="birthTimer"></span></p>
+	    </div>
+		<g:FlowPanel styleName="{R.css.inputContainer}">
+			<g:Button ui:field="genderMale"
+				styleName="{R.css.genderSelect} {R.css.genderSelectBoy}" />
+			<g:Button ui:field="genderFemale"
+				styleName="{R.css.genderSelect} {R.css.genderSelectGirl}" />
+			<g:TextBox ui:field="input" styleName="{R.css.inputBox}" />
+		</g:FlowPanel>
+		<g:FlowPanel ui:field="namesContainer" styleName="{R.css.namesContainer}" />
+	</g:HTMLPanel>
 </ui:UiBinder> 
