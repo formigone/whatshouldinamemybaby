@@ -24,4 +24,10 @@ public class AppController implements Presenter {
 	public void doOnKeyPressed(KeyPressEvent event) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public void doOnVote() {
+		// TODO Auto-generated method stub
+		
+	}
 }

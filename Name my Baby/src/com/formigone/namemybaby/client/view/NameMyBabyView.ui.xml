@@ -7,7 +7,7 @@
 	<g:HTMLPanel styleName="{R.css.body}">
 	    <div class="{R.css.header}">
 	        <h1>Name my Baby</h1>
-	        <p>Born in <span ui:field="birthTimer"></span></p>
+	        <p>Hours 'til baby <span ui:field="birthTimer"></span></p>
 	    </div>
 		<g:FlowPanel styleName="{R.css.inputContainer}">
 			<g:Button ui:field="genderMale"

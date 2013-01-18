@@ -1,19 +1,21 @@
 package com.formigone.namemybaby.client.view;
 
 import java.util.Date;
+import java.util.List;
 
 import com.formigone.namemybaby.client.presenter.NameMyBabyPresenter;
 import com.formigone.namemybaby.client.presenter.Presenter;
 import com.formigone.namemybaby.client.view.res.R;
+import com.formigone.namemybaby.shared.model.Baby;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -35,6 +37,11 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 	@UiField SpanElement birthTimer;
 	private Presenter presenter;
 	private R r = GWT.create(R.class);
+	
+	public interface NameVoter {
+		void setParent(NameMyBabyView parentView);
+		void handleOnVote(ClickEvent event);
+	}
 
 	public NameMyBabyView() {
 		r.css().ensureInjected();
@@ -42,25 +49,6 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 		input.getElement().setAttribute("placeholder", "Suggest a name");
 		markDown(true);
 		bind();
-		
-		
-		NameCard[] names = new NameCard[] {
-				new NameCard(),
-				new NameCard(false),
-				new NameCard(false),
-				new NameCard()
-			};
-			
-			names[0].setName("Giggo");
-			names[1].setName("Lushimimi");
-			names[2].setName("Natasha");
-			names[3].setName("Lionel");
-
-			namesContainer.clear();
-			namesContainer.add(names[0]);
-			namesContainer.add(names[1]);
-			namesContainer.add(names[2]);
-			namesContainer.add(names[3]);
 	}
 
 	private ClickHandler handleGenderSelect = new ClickHandler() {
@@ -111,6 +99,7 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 		
 		Timer timer = new Timer() {
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 				Date date = new Date();
@@ -133,6 +122,19 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 		};
 		
 		timer.scheduleRepeating(1000);
+	}
+	
+	@Override
+	public void setData(List<Baby> babies) {
+		
+		namesContainer.clear();
+		
+		for (Baby baby : babies) {
+			int rand = Random.nextInt(80) - 20;
+			NameCard nameCard = new NameCard(baby.getName(), baby.isMale(), rand);
+			nameCard.setParent(this);
+			namesContainer.add(nameCard);
+		}
 	}
 
 	@Override
@@ -178,5 +180,12 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 	@Override
 	public boolean isInputEnabled() {
 		return input.isEnabled();
+	}
+
+	@Override
+	public void doOnVote(ClickEvent event) {
+		// TODO: Find out which vote was pressed and for which baby
+		if (presenter != null)
+			presenter.doOnVote();
 	}
 }
