@@ -8,15 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.google.appengine.api.datastore.Key;
-
 @Entity
 public class Baby implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Key key;
+	private String key;
 	
 	@Basic
 	private String name;
@@ -35,7 +33,7 @@ public class Baby implements Serializable {
 		this.isMale = isMale;
 	}
 
-	public Key getKey() {
+	public String getKey() {
 		return key;
 	}
 	
