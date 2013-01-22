@@ -38,12 +38,14 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements
 
 	@Override
 	public List<Baby> getBabies(int max) {
-		List<Baby> babies = new ArrayList<Baby>();
-		babies.add(new Baby("Giggo", true));
-		babies.add(new Baby("Lushimimi", false));
-		babies.add(new Baby("Natasha", false));
-		babies.add(new Baby("Lionel", true));
+		EntityManager em = EMF.get().createEntityManager();
+		String q = "select b from Baby b order by b.name";
+		Query query = em.createQuery(q);
 
+		System.out.println("Query babies list: " + q);
+		
+		@SuppressWarnings("unchecked")
+		List<Baby> babies = new ArrayList<Baby>(query.getResultList());
 		return babies;
 	}
 }
