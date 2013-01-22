@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import com.formigone.namemybaby.client.NameMyBabyService;
 import com.formigone.namemybaby.shared.model.Baby;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-public class NameMyBabyServeImpl extends RemoteServiceServlet implements NameMyBabyService {
+public class NameMyBabyServeImpl extends RemoteServiceServlet implements
+		NameMyBabyService {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +24,12 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements NameMyB
 			em.getTransaction().begin();
 			em.persist(baby);
 			em.getTransaction().commit();
-			
+		} catch (Exception e) {
+			System.out.println("D'OH! Exception thrown. Rolling back transaction.");
+			e.printStackTrace();
+			em.getTransaction().rollback();
 		} finally {
+			System.out.println("Closing entity manager");
 			em.close();
 		}
 		
@@ -37,7 +43,7 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements NameMyB
 		babies.add(new Baby("Lushimimi", false));
 		babies.add(new Baby("Natasha", false));
 		babies.add(new Baby("Lionel", true));
-		
+
 		return babies;
 	}
 }

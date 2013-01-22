@@ -14,7 +14,7 @@ public class Baby implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String key;
+	private Long key;
 	
 	@Basic
 	private String name;
@@ -33,7 +33,7 @@ public class Baby implements Serializable {
 		this.isMale = isMale;
 	}
 
-	public String getKey() {
+	public Long getKey() {
 		return key;
 	}
 	
