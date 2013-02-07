@@ -48,6 +48,14 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements
 		
 		@SuppressWarnings("unchecked")
 		List<Baby> babies = new ArrayList<Baby>(query.getResultList());
+
+		for (int i = 0; i < babies.size(); i++) {
+			System.out.println("Fixing votes");
+			babies.get(i).fixVotes();
+		}
+
+		em.close();
+
 		return babies;
 	}
 	

@@ -2,6 +2,7 @@ package com.formigone.namemybaby.shared.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -23,13 +24,13 @@ public class Baby implements Serializable {
 	@Basic
 	private boolean isMale;
 	
-/*	@Basic
-	private ArrayList<String> upVotes;
+	@Basic
+	private List<String> upVotes;
 	
 	@Basic
-	private ArrayList<String> downVotes;
+	private List<String> downVotes;
 	
-*/	public Baby() {}
+	public Baby() {}
 
 	public Baby(String name) {
 		this(name, true);
@@ -38,9 +39,9 @@ public class Baby implements Serializable {
 	public Baby(String name, boolean isMale) {
 		this.name = name;
 		this.isMale = isMale;
-/*		upVotes = new ArrayList<String>();
+		upVotes = new ArrayList<String>();
 		downVotes = new ArrayList<String>();
-*/	}
+	}
 
 	public Long getKey() {
 		return key;
@@ -61,10 +62,28 @@ public class Baby implements Serializable {
 	public void setMale(boolean isMale) {
 		this.isMale = isMale;
 	}
-	
+
+	public void fixVotes() {
+		List<String> tmpUps = new ArrayList<String>();
+		for (String str : upVotes)
+			tmpUps.add(str);
+
+		upVotes = null;
+		upVotes = tmpUps;
+
+		List<String> tmpDowns = new ArrayList<String>();
+		for (String str : downVotes)
+			tmpDowns.add(str);
+
+		downVotes = null;
+		downVotes = tmpDowns;
+
+		System.out.println("Votes type: " + upVotes.getClass());
+	}
+
 	public int getScore() {
-		return 0;
-/*		int up = upVotes.size();
+
+		int up = upVotes.size();
 		int down = downVotes.size();
 		int total = up + down;
 		
@@ -75,10 +94,10 @@ public class Baby implements Serializable {
 			return down / total * -100;
 		
 		return up / total * 100;
-*/	}
+	}
 	
 	public void voteUp(String voter) {
-/*		// Unvote
+		// Unvote
 		if (upVotes.contains(voter)) {
 			upVotes.remove(voter);
 			return;
@@ -86,10 +105,10 @@ public class Baby implements Serializable {
 		
 		downVotes.remove(voter);
 		upVotes.add(voter);
-*/	}
+	}
 	
 	public void voteDown(String voter) {
-/*		// Unvote
+		// Unvote
 		if (downVotes.contains(voter)) {
 			downVotes.remove(voter);
 			return;
@@ -97,5 +116,5 @@ public class Baby implements Serializable {
 		
 		downVotes.add(voter);
 		upVotes.remove(voter);
-*/	}
+	}
 }
