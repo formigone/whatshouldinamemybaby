@@ -10,4 +10,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface NameMyBabyService extends RemoteService {
 	Baby addBaby(Baby baby);
 	List<Baby> getBabies(int max);
+	Baby upVote(Baby baby);
 }

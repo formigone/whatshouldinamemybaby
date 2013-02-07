@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.formigone.namemybaby.client.NameMyBabyService;
 import com.formigone.namemybaby.shared.model.Baby;
@@ -47,5 +49,21 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements
 		@SuppressWarnings("unchecked")
 		List<Baby> babies = new ArrayList<Baby>(query.getResultList());
 		return babies;
+	}
+	
+	@Override
+	public Baby upVote(Baby baby) {
+		EntityManager em = EMF.get().createEntityManager();
+		String q = "select b from Baby b order by b.name";
+		Query query = em.createQuery(q);
+
+		System.out.println("Query baby: " + q);
+		HttpServletRequest request = getThreadLocalRequest();
+		HttpSession session = request.getSession();
+		
+		baby = (Baby)query.getSingleResult();
+		baby.voteUp(session.getId());
+
+		return baby;
 	}
 }

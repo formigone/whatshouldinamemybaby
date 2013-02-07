@@ -64,16 +64,16 @@ public class NameMyBabyPresenter implements Presenter {
 			int key = (int) event.getCharCode();
 			if (key == 13 /* Enter */) {
 				String name = display.getInput();
-				
+
 				if (name.length() < 2)
 					return;
-				
+
 				boolean gender = display.isMaleSelected();
 				Baby baby = new Baby(name, gender);
-	
+
 				display.setInputEnabled(false);
 				display.setInput("Loading...");
-				
+
 				rpcService.addBaby(baby, new AsyncCallback<Baby>() {
 
 					@Override
@@ -95,8 +95,11 @@ public class NameMyBabyPresenter implements Presenter {
 	}
 
 	@Override
-	public void doOnVote() {
-		// TODO Auto-generated method stub
-		System.out.println("VOTED");
+	public void doOnVote(int index, boolean isUpvote) {
+		Baby baby = babies.get(index);
+		if (isUpvote)
+			System.out.println("Up voted " + baby.getName());
+		else
+			System.out.println("Down voted " + baby.getName());
 	}
 }

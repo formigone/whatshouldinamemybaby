@@ -41,6 +41,8 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 	public interface NameVoter {
 		void setParent(NameMyBabyView parentView);
 		void handleOnVote(ClickEvent event);
+		boolean hasBtn(Button btn);
+		boolean isUpVote(Button btn);
 	}
 
 	public NameMyBabyView() {
@@ -130,8 +132,7 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 		namesContainer.clear();
 		
 		for (Baby baby : babies) {
-			int rand = Random.nextInt(80) - 20;
-			NameCard nameCard = new NameCard(baby.getName(), baby.isMale(), rand);
+			NameCard nameCard = new NameCard(baby.getName(), baby.isMale(), baby.getScore());
 			nameCard.setParent(this);
 			namesContainer.add(nameCard);
 		}
@@ -184,8 +185,15 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 
 	@Override
 	public void doOnVote(ClickEvent event) {
-		// TODO: Find out which vote was pressed and for which baby
-		if (presenter != null)
-			presenter.doOnVote();
+		Button btn = (Button) event.getSource();
+		for (int i = 0; i < namesContainer.getWidgetCount(); i++) {
+			NameCard card = (NameCard) namesContainer.getWidget(i);
+
+			if (card.hasBtn(btn)) {
+				if (presenter != null)
+					presenter.doOnVote(i, card.isUpVote(btn));
+				break;
+			}
+		}
 	}
 }

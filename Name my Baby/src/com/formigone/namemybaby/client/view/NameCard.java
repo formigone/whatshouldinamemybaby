@@ -76,4 +76,14 @@ public class NameCard extends Composite implements NameMyBabyView.NameVoter {
 		if (parentView != null)
 			parentView.doOnVote(event);
 	}
+
+	@Override
+	public boolean hasBtn(Button btn) {
+		return upVote == btn || downVote == btn;
+	}
+	
+	@Override
+	public boolean isUpVote(Button btn) {
+		return upVote == btn;
+	}
 }

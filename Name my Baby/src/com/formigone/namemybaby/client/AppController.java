@@ -26,7 +26,7 @@ public class AppController implements Presenter {
 	}
 
 	@Override
-	public void doOnVote() {
+	public void doOnVote(int index, boolean isUpvote) {
 		// TODO Auto-generated method stub
 		
 	}
