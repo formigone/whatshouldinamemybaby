@@ -79,21 +79,27 @@ public class Baby implements Serializable {
 		downVotes = tmpDowns;
 
 		System.out.println("Votes type: " + upVotes.getClass());
+		System.out.println("Ups: " + upVotes.size());
+		System.out.println("Downs: " + downVotes.size());
 	}
 
+	/**
+	 * What out for that integer division!
+	 * @return int score The ratio between up votes and down votes. If there are more down votes, the ratio is negative.
+	 */
 	public int getScore() {
 
 		int up = upVotes.size();
 		int down = downVotes.size();
 		int total = up + down;
-		
+
 		if (total == 0)
 			return total;
 
 		if (down > up)
-			return down / total * -100;
-		
-		return up / total * 100;
+			return (int) (down / ((float) total) * -100);
+
+		return (int) (up / ((float) total) * 100);
 	}
 	
 	public void voteUp(String voter) {

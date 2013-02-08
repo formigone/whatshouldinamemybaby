@@ -45,7 +45,7 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements
 		Query query = em.createQuery(q);
 
 		System.out.println("Query babies list: " + q);
-		
+
 		@SuppressWarnings("unchecked")
 		List<Baby> babies = new ArrayList<Baby>(query.getResultList());
 
@@ -61,16 +61,56 @@ public class NameMyBabyServeImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public Baby upVote(Baby baby) {
-		EntityManager em = EMF.get().createEntityManager();
-		String q = "select b from Baby b order by b.name";
-		Query query = em.createQuery(q);
-
-		System.out.println("Query baby: " + q);
 		HttpServletRequest request = getThreadLocalRequest();
 		HttpSession session = request.getSession();
+		String voter = session.getId();
+
+		System.out.println("Voting up " + baby.getName() + " by " + voter);
+		baby.voteUp(voter);
+
+		EntityManager em = EMF.get().createEntityManager();
 		
-		baby = (Baby)query.getSingleResult();
-		baby.voteUp(session.getId());
+		try {
+			System.out.println("Updating baby");
+			em.getTransaction().begin();
+			em.merge(baby);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("D'OH! Exception thrown. Rolling back transaction.");
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		} finally {
+			System.out.println("Closing entity manager");
+			em.close();
+		}
+
+		return baby;
+	}
+	
+	@Override
+	public Baby downVote(Baby baby) {
+		HttpServletRequest request = getThreadLocalRequest();
+		HttpSession session = request.getSession();
+		String voter = session.getId();
+
+		System.out.println("Voting down " + baby.getName() + " by " + voter);
+		baby.voteDown(voter);
+
+		EntityManager em = EMF.get().createEntityManager();
+
+		try {
+			System.out.println("Updating baby");
+			em.getTransaction().begin();
+			em.merge(baby);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("D'OH! Exception thrown. Rolling back transaction.");
+			e.printStackTrace();
+			em.getTransaction().rollback();
+		} finally {
+			System.out.println("Closing entity manager");
+			em.close();
+		}
 
 		return baby;
 	}

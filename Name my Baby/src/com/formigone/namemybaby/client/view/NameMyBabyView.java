@@ -43,6 +43,7 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 		void handleOnVote(ClickEvent event);
 		boolean hasBtn(Button btn);
 		boolean isUpVote(Button btn);
+		void updateInfo(Baby baby);
 	}
 
 	public NameMyBabyView() {
@@ -195,5 +196,11 @@ public class NameMyBabyView extends Composite implements NameMyBabyPresenter.Dis
 				break;
 			}
 		}
+	}
+
+	@Override
+	public void updateBabyCard(int index, Baby baby) {
+		NameCard card = (NameCard) namesContainer.getWidget(index);
+		card.updateInfo(baby);
 	}
 }

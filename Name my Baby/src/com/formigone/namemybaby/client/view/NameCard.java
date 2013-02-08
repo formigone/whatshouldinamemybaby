@@ -1,6 +1,7 @@
 package com.formigone.namemybaby.client.view;
 
 import com.formigone.namemybaby.client.view.res.R;
+import com.formigone.namemybaby.shared.model.Baby;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -85,5 +86,11 @@ public class NameCard extends Composite implements NameMyBabyView.NameVoter {
 	@Override
 	public boolean isUpVote(Button btn) {
 		return upVote == btn;
+	}
+
+	@Override
+	public void updateInfo(Baby baby) {
+		setPercent(baby.getScore());
+		System.out.println("Updating " + baby.getName() + "'s score to " + baby.getScore());
 	}
 }

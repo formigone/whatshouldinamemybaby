@@ -24,6 +24,7 @@ public class NameMyBabyPresenter implements Presenter {
 		String getInput();
 		Widget asWidget();
 		void setData(List<Baby> babies);
+		void updateBabyCard(int index, Baby baby);
 	}
 
 	private Display display;
@@ -96,10 +97,37 @@ public class NameMyBabyPresenter implements Presenter {
 
 	@Override
 	public void doOnVote(int index, boolean isUpvote) {
-		Baby baby = babies.get(index);
-		if (isUpvote)
+		final int babyIndex = index;
+		Baby baby = babies.get(babyIndex);
+
+		if (isUpvote) {
 			System.out.println("Up voted " + baby.getName());
-		else
+
+			rpcService.upVote(baby, new AsyncCallback<Baby>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+				}
+
+				@Override
+				public void onSuccess(Baby result) {
+					display.updateBabyCard(babyIndex, result);
+				}
+			});
+		} else {
 			System.out.println("Down voted " + baby.getName());
+
+			rpcService.downVote(baby, new AsyncCallback<Baby>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+				}
+
+				@Override
+				public void onSuccess(Baby result) {
+					display.updateBabyCard(babyIndex, result);
+				}
+			});
+		}
 	}
 }
